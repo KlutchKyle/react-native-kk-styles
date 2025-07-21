@@ -62,7 +62,12 @@ import { useTheme, mdValue, h1FontSize } from '@klutchkyle/react-native-kk-style
 const YourComponent = () => {
   const {theme,isDark,toggleTheme} = useTheme()
   <View style={{backgroundColor: theme.bg, padding: mdValue}}>
-    <Text style={{color: theme.text, fontSize: h1FontSize}}>This is some example text themed with common theme colors</Text>
+    <Text style={{
+      color: theme.text, 
+      fontSize: h1FontSize
+    }}>
+      This is some example text themed with common theme colors
+    </Text>
   </View>
 
 
