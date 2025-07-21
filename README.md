@@ -10,11 +10,11 @@ yarn add @klutchkyle/react-native-kk-styles
 
 ## Usage
 
+Define your theme:
+
 ```js
 
-import {ThemeProvider} from '@klutchkyle/react-native-kk-styles'
-
-const AppColors = (isDark: boolean = false) => ({
+export const AppColors = (isDark: boolean = false): Theme => ({
   // Backgrounds
   bg_dark: isDark ? 'hsl(0, 100%, 7%)' : 'hsl(0, 100%, 95%)',
   bg: isDark ? 'hsl(0, 70%, 10%)' : 'hsl(0, 70%, 92%)',
@@ -41,6 +41,13 @@ const AppColors = (isDark: boolean = false) => ({
   info: 'hsl(200, 90%, 60%)',        // blue
 });
 
+```
+
+Then wrap your app with ThemeProvider:
+
+```js
+
+import {ThemeProvider} from '@klutchkyle/react-native-kk-styles'
 
 function App() {
   return (
@@ -52,7 +59,7 @@ function App() {
 }
 ```
 
-Then in your component you can do:
+Next in your component you can do:
 
 ```js
 import { useTheme, mdValue, h1FontSize } from '@klutchkyle/react-native-kk-styles'
@@ -70,6 +77,8 @@ const YourComponent = () => {
 }
 
 ```
+
+Voila!
 
 ## Contributing
 
