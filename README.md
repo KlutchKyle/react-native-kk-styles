@@ -69,8 +69,6 @@ const YourComponent = () => {
       This is some example text themed with common theme colors
     </Text>
   </View>
-
-
 }
 
 ```
