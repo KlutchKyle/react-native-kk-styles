@@ -4,14 +4,11 @@ React Native KK For easy UI styling based on common style guidelines.
 
 ## Installation
 
-
 ```sh
 yarn add @klutchkyle/react-native-kk-styles
 ```
 
-
 ## Usage
-
 
 ```js
 
@@ -47,16 +44,31 @@ const AppColors = (isDark: boolean = false) => ({
 
 function App() {
   return (
-        <ThemeProvider
-          getAppColors={AppColors}>
-          <NotifierWrapper>
-            <NavigationWithTheme />
-          </NotifierWrapper>
-        </ThemeProvider>
+    <ThemeProvider
+      getAppColors={AppColors}>
+      <NotifierWrapper>
+        <NavigationWithTheme />
+      </NotifierWrapper>
+    </ThemeProvider>
   );
 }
 ```
 
+Then in your component you can do:
+
+```js
+import { useTheme, mdValue, h1FontSize } from '@klutchkyle/react-native-kk-styles'
+
+const YourComponent = () => {
+  const {theme,isDark,toggleTheme} = useTheme()
+  <View style={{backgroundColor: theme.bg, padding: mdValue}}>
+    <Text style={{color: theme.text, fontSize: h1FontSize}}>This is some example text themed with common theme colors</Text>
+  </View>
+
+
+}
+
+```
 
 ## Contributing
 
