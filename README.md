@@ -46,9 +46,7 @@ function App() {
   return (
     <ThemeProvider
       getAppColors={AppColors}>
-      <NotifierWrapper>
-        <NavigationWithTheme />
-      </NotifierWrapper>
+      <YourAppEntryPoint/>
     </ThemeProvider>
   );
 }
