@@ -1,7 +1,7 @@
-import type {ReactNode} from 'react';
-import {useColorScheme} from 'react-native'; // 👈 key!
+import type { ReactNode } from 'react';
+import { useColorScheme } from 'react-native'; // 👈 key!
 
-import type { getAppColorsFn, } from './types';
+import type { getAppColorsFn } from './types';
 import { ThemeContext } from './ThemeContext';
 
 type ThemeProviderProps = {
@@ -9,7 +9,10 @@ type ThemeProviderProps = {
   children: ReactNode;
 };
 
-export const ThemeProvider = ({children,getAppColors}: ThemeProviderProps) => {
+export const ThemeProvider = ({
+  children,
+  getAppColors,
+}: ThemeProviderProps) => {
   const scheme = useColorScheme(); // 'light' | 'dark' | null
 
   const isDark = scheme === 'dark';
@@ -20,5 +23,7 @@ export const ThemeProvider = ({children,getAppColors}: ThemeProviderProps) => {
     toggleTheme: () => {}, // 👈 This is now a no-op, unless you want a manual override
   };
 
-  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
+  return (
+    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
+  );
 };
