@@ -21,4 +21,7 @@ export type ThemeContextType = {
   theme: Theme;
   isDark: boolean;
   toggleTheme: () => void;
+  setTheme: (mode: 'dark' | 'light') => void;
+  matchSystem: boolean;
+  setMatchSystem: React.Dispatch<React.SetStateAction<boolean>>;
 };
