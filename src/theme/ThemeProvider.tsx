@@ -17,12 +17,12 @@ export const ThemeProvider = ({
   getAppColors,
   defaultMatchSystem = true
 }: ThemeProviderProps) => {
-  const scheme = useColorScheme(); // 'light' | 'dark' | null
+  const scheme = useColorScheme() === 'dark'; // 'light' | 'dark' | null
   const [override, setOverride] = useState<ThemeOverride>(null)
   const [matchSystem, setMatchSystem] = useState(defaultMatchSystem)
 
   const isDark = useMemo(()=>{
-    if (matchSystem) return useColorScheme() === 'dark'
+    if (matchSystem) return scheme
     return override === 'dark';
 
   }, [matchSystem, override,scheme])
