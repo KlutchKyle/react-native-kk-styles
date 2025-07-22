@@ -9,17 +9,17 @@ type ThemeOverride = 'light' | 'dark' | null;
 type ThemeProviderProps = {
   getAppColors: getAppColorsFn;
   children: ReactNode;
-  defaultMatchSystme: boolean;
+  defaultMatchSystem?: boolean;
 };
 
 export const ThemeProvider = ({
   children,
   getAppColors,
-  defaultMatchSystme = true
+  defaultMatchSystem = true
 }: ThemeProviderProps) => {
   const scheme = useColorScheme(); // 'light' | 'dark' | null
   const [override, setOverride] = useState<ThemeOverride>(null)
-  const [matchSystem, setMatchSystem] = useState(defaultMatchSystme)
+  const [matchSystem, setMatchSystem] = useState(defaultMatchSystem)
 
   const isDark = useMemo(()=>{
     if (matchSystem) return useColorScheme() === 'dark'
