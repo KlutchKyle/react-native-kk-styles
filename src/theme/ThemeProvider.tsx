@@ -1,26 +1,49 @@
-import type { ReactNode } from 'react';
+import { useMemo, useState, type ReactNode } from 'react';
 import { useColorScheme } from 'react-native'; // 👈 key!
 
 import type { getAppColorsFn } from './types';
 import { ThemeContext } from './ThemeContext';
 
+type ThemeOverride = 'light' | 'dark' | null;
+
 type ThemeProviderProps = {
   getAppColors: getAppColorsFn;
   children: ReactNode;
+  defaultMatchSystme: boolean;
 };
 
 export const ThemeProvider = ({
   children,
   getAppColors,
+  defaultMatchSystme = true
 }: ThemeProviderProps) => {
   const scheme = useColorScheme(); // 'light' | 'dark' | null
+  const [override, setOverride] = useState<ThemeOverride>(null)
+  const [matchSystem, setMatchSystem] = useState(defaultMatchSystme)
 
-  const isDark = scheme === 'dark';
+  const isDark = useMemo(()=>{
+    if (matchSystem) return useColorScheme() === 'dark'
+    return override === 'dark';
+
+  }, [matchSystem, override,scheme])
+
+  const toggleTheme = () => {
+    setMatchSystem(false); // disable system matching when manually toggled
+    setOverride(prev => (prev === 'dark' ? 'light' : 'dark'));
+  };
+
+  const setTheme = (mode: 'dark' | 'light') => {
+    setMatchSystem(false);
+    setOverride(mode);
+  };
 
   const value = {
     theme: getAppColors(isDark),
     isDark,
-    toggleTheme: () => {}, // 👈 This is now a no-op, unless you want a manual override
+    toggleTheme,
+    setTheme,
+    matchSystem,
+    setMatchSystem
   };
 
   return (
